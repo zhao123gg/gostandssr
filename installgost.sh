@@ -98,13 +98,13 @@ function Install_ct() {
   [[ -z ${addyn} ]] && addyn="n"
   if [[ ${addyn} == [Yy] ]]; then
     rm -rf gost-linux-"$bit"-"$ct_new_ver".gz
-    wget --no-check-certificate http://syzs.zcy7.cn/gost/gost-linux-amd64-2.11.1.gz
+    wget --no-check-certificate https://github.com/zhao123gg/gostandssr/blob/main/gost-linux-amd64-2.11.1.gz
     gunzip gost-linux-"$bit"-"$ct_new_ver".gz
     mv gost-linux-"$bit"-"$ct_new_ver" gost
     mv gost /usr/bin/gost
     chmod -R 777 /usr/bin/gost
-    wget --no-check-certificate http://syzs.zcy7.cn/gost/gost.service && chmod -R 777 gost.service && mv gost.service /usr/lib/systemd/system
-    mkdir /etc/gost && wget --no-check-certificate http://syzs.zcy7.cn/gost/config.json && mv config.json /etc/gost && chmod -R 777 /etc/gost
+    wget --no-check-certificate https://github.com/zhao123gg/gostandssr/blob/main/gost.service && chmod -R 777 gost.service && mv gost.service /usr/lib/systemd/system
+    mkdir /etc/gost && wget --no-check-certificate https://github.com/zhao123gg/gostandssr/blob/main/config.json && mv config.json /etc/gost && chmod -R 777 /etc/gost
   else
     rm -rf gost-linux-"$bit"-"$ct_new_ver".gz
     wget --no-check-certificate https://github.com/ginuerzh/gost/releases/download/v"$ct_new_ver"/gost-linux-"$bit"-"$ct_new_ver".gz
@@ -746,13 +746,13 @@ cron_restart() {
 }
 
 update_sh() {
-  ol_version=$(curl -L -s http://syzs.zcy7.cn/gost/installgost.sh | grep "shell_version=" | head -1 | awk -F '=|"' '{print $3}')
+  ol_version=$(curl -L -s https://github.com/zhao123gg/gostandssr/blob/main/installgost.sh | grep "shell_version=" | head -1 | awk -F '=|"' '{print $3}')
   if [[ "$shell_version" != "$ol_version" ]]; then
     echo -e "存在新版本，是否更新；不更新直接回车 [Y/N]?"
     read -r update_confirm
     case $update_confirm in
     [yY][eE][sS] | [yY])
-      wget -N --no-check-certificate http://syzs.zcy7.cn/gost/installgost.sh
+      wget -N --no-check-certificate https://github.com/zhao123gg/gostandssr/blob/main/installgost.sh
       echo -e "更新完成"
       exit 0
       ;;
